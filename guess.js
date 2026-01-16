@@ -130,7 +130,7 @@ const series = [
     image: "https://wallpapercave.com/wp/wp11814765.jpg"
 },
 {
-    name: "IT: Welcome To Derry ",
+    name: "IT: Welcome To Derry",
     image: "https://wallpapercave.com/wp/wp15929476.jpg"
 },
 
