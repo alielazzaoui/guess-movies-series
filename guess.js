@@ -1,6 +1,5 @@
 // Series data
 const series = [
-
 {
     name: "The Shawshank Redemption",
     image: "https://wallpapercave.com/wp/wp2014276.jpg"
@@ -21,13 +20,10 @@ const series = [
     name: "12 Angry Men",
     image: "https://wallpapercave.com/wp/wp2347431.jpg"
 },
-
-
 {
     name: "Pulp Fiction",
     image: "https://wallpapercave.com/wp/wp15480325.jpg"
 },
-
 {
     name: "Fight Club",
     image: "https://wallpapercave.com/wp/wp12720795.jpg"
@@ -36,12 +32,10 @@ const series = [
     name: "Breaking Bad",
     image: "https://wallpapercave.com/uwp/uwp3550993.jpeg"
 },
-
 {
     name: "The Sopranos",
     image: "https://wallpapercave.com/wp/IFw1ZH1.jpg"
 },
-
 {
     name: "Severance",
     image: "https://wallpapercave.com/wp/wp14753741.jpg"
@@ -66,7 +60,6 @@ const series = [
     name: "Interstellar",
     image: "https://wallpapercave.com/wp/wp13388712.jpg"
 },
-
 {
     name: "The Matrix",
     image: "https://wallpapercave.com/wp/wp13137359.jpg"
@@ -83,7 +76,6 @@ const series = [
     name: "Goodfellas",
     image: "https://wallpapercave.com/wp/wp8419976.jpg"
 },
-
 {
     name: "The Lord of the Rings: The Return of the King",
     image: "https://wallpapercave.com/wp/wp4119586.jpg"
@@ -124,19 +116,14 @@ const series = [
     name: "The Wire",
     image: "https://wallpapercave.com/wp/wp1941989.jpg"
 },
-
 {
     name: "Chernobyl",
     image: "https://wallpapercave.com/wp/wp11814765.jpg"
 },
-
-
 {
     name: "Sherlock",
     image: "https://wallpapercave.com/wp/wp12410151.jpg"
 },
-
-
 {
     name: "Succession",
     image: "https://wallpapercave.com/wp/wp13333985.jpg"
@@ -149,12 +136,10 @@ const series = [
     name: "The Last of Us",
     image: "https://wallpapercave.com/wp/wp15297658.jpg"
 },
-
 {
     name: "The Pitt",
     image: "https://wallpapercave.com/wp/wp15736809.jpg"
 },
-
 {
     name: "Daredevil: Born Again",
     image: "https://wallpapercave.com/wp/wp15189863.webp"
@@ -166,7 +151,7 @@ const series = [
 {
     name: "Spider-Man: Across the Spider-Verse",
     image: "https://wallpapercave.com/wp/wp13219060.jpg"
-  },  
+},  
 {
     name: "Top Gun: Maverick",
     image: "https://wallpapercave.com/wp/wp11284522.jpg"
@@ -179,9 +164,6 @@ const series = [
     name: "Parasite",
     image: "https://wallpapercave.com/wp/wp5510273.jpg"
 }
-
-
-
 ];
 
 // Game state
@@ -194,10 +176,12 @@ let gameState = 'playing';
 let timerInterval = null;
 let timeLeft = 10;
 let timerDuration = 10;
-let difficulty = 'normal';
+let difficulty = 'medium';
 let playerName = '';
-let allScores = []; // Store all player scores
-let shuffledSeries = []; // Shuffled order of series
+let allScores = [];
+let shuffledSeries = [];
+let totalRounds = 10; // Default number of rounds
+let numberOfRounds = 10; // Selected number of rounds
 
 const pixelLevels = [
     'pixelated-medium-high',
@@ -219,6 +203,8 @@ const finalPlayerName = document.getElementById('final-player-name');
 const finalScoreDisplay = document.getElementById('final-score');
 const scoreTableBody = document.getElementById('score-table-body');
 const playAgainBtn = document.getElementById('play-again-btn');
+const currentRoundDisplay = document.getElementById('current-round');
+const totalRoundsDisplay = document.getElementById('total-rounds');
 
 const imageBox = document.getElementById('image-box');
 const seriesImage = document.getElementById('series-image');
@@ -249,6 +235,15 @@ document.addEventListener('DOMContentLoaded', function() {
         mediumBtn.classList.add('selected');
     }
     
+    // Get rounds buttons
+    const roundsBtns = document.querySelectorAll('.rounds-btn');
+    
+    // Select 10 rounds by default
+    const tenRoundsBtn = document.querySelector('[data-rounds="10"]');
+    if (tenRoundsBtn) {
+        tenRoundsBtn.classList.add('selected');
+    }
+    
     // Difficulty selection
     difficultyBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -267,6 +262,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             console.log('Difficulty set to:', difficulty, 'Timer:', timerDuration);
+        });
+    });
+    
+    // Rounds selection
+    roundsBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log('Rounds button clicked');
+            roundsBtns.forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+            const roundsValue = this.getAttribute('data-rounds');
+            
+            if (roundsValue === 'all') {
+                numberOfRounds = series.length;
+            } else {
+                numberOfRounds = parseInt(roundsValue);
+            }
+            
+            console.log('Rounds set to:', numberOfRounds);
         });
     });
     
@@ -330,10 +343,17 @@ function startGameFromWelcome() {
     console.log('Player name:', playerName);
     console.log('Difficulty:', difficulty);
     console.log('Timer duration:', timerDuration);
+    console.log('Number of rounds:', numberOfRounds);
     
-    // Shuffle the series array for random order
-    shuffledSeries = [...series].sort(() => Math.random() - 0.5);
-    console.log('Series shuffled for random order');
+    // Shuffle the series array and take only the selected number of rounds
+    shuffledSeries = [...series].sort(() => Math.random() - 0.5).slice(0, numberOfRounds);
+    totalRounds = shuffledSeries.length;
+    console.log('Series shuffled for random order, total rounds:', totalRounds);
+    
+    // Update total rounds display
+    if (totalRoundsDisplay) {
+        totalRoundsDisplay.textContent = totalRounds;
+    }
     
     // Update footer text
     if (footerText) {
@@ -369,17 +389,16 @@ function startNewSeries() {
     console.log('Starting new series, index:', currentSeriesIndex);
     console.log('Total series:', shuffledSeries.length);
     
-    // If shuffledSeries is empty (shouldn't happen, but safety check)
-    if (shuffledSeries.length === 0) {
-        shuffledSeries = [...series].sort(() => Math.random() - 0.5);
-        console.log('Emergency shuffle performed');
-    }
-    
     // Check if all series are completed
     if (currentSeriesIndex >= shuffledSeries.length) {
         console.log('All series completed! Ending game...');
         endGame();
         return;
+    }
+    
+    // Update round counter
+    if (currentRoundDisplay) {
+        currentRoundDisplay.textContent = currentSeriesIndex + 1;
     }
     
     // Clear any existing timer
@@ -388,7 +407,6 @@ function startNewSeries() {
     // Get current series from shuffled array
     currentSeries = shuffledSeries[currentSeriesIndex];
     console.log('Current series:', currentSeries.name);
-    console.log('Shuffled series order:', shuffledSeries.map(s => s.name));
     
     // Start with highest pixelation
     currentPixelLevel = 0;
@@ -451,9 +469,6 @@ function endGame() {
         finalScreen.classList.remove('hidden');
         console.log('Final screen shown');
     }
-    
-    console.log('Final screen element:', finalScreen);
-    console.log('Final screen classes:', finalScreen ? finalScreen.className : 'not found');
     
     // Display final score
     if (finalPlayerName) {
