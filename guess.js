@@ -163,7 +163,111 @@ const series = [
 {
     name: "Parasite",
     image: "https://wallpapercave.com/wp/wp5510273.jpg"
-}
+},
+{
+    name: "There Will Be Blood",
+    image: "https://wallpapercave.com/wp/wp2376050.jpg"
+},
+{
+    name: "Lucifer",
+    image: "https://wallpapercave.com/wp/wp15483581.jpg"
+},
+{
+    name: "Stranger Things",
+    image: "https://wallpapercave.com/wp/wp14809551.jpg"
+},
+{
+    name: "House Of Cards",
+    image: "https://wallpapercave.com/wp/wp1839796.jpg"
+},{
+    name: "IT:Welcome to Derry",
+    image: "https://wallpapercave.com/wp/wp15929670.jpg"
+},{
+    name: "Lost",
+    image: "https://wallpapercave.com/wp/wp3999805.jpg"
+},
+{
+    name: "Riverdale ",
+    image: "https://wallpapercave.com/wp/wp1973204.jpg"
+},
+{
+    name: "Outer Banks",
+    image: "https://wallpapercave.com/wp/wp6294160.jpg"
+},
+{
+    name: "La Casa De Papel",
+    image: "https://wallpapercave.com/wp/wp2358417.jpg"
+},
+{
+    name: "Venom: The Last Dance",
+    image: "https://wallpapercave.com/wp/wp14473212.png"
+},
+{
+    name: "No Country For Old Men",
+    image: "https://wallpapercave.com/wp/wp2466087.jpg"
+},
+{
+    name: "Avengers: Infinity War",
+    image: "https://wallpapercave.com/wp/wp3850252.jpg"
+},
+{
+    name: "Avengers Endgame",
+    image: "https://images.alphacoders.com/100/thumb-1920-1002901.jpg"
+},
+{
+    name: "Avengers: Age Of Ultron",
+    image: "https://wallpapercave.com/wp/wp1818455.jpg"
+},
+{
+    name: "Captain America: Civil War",
+    image: "https://wallpapercave.com/wp/wp1809509.jpg"
+},
+{
+    name: "Captain America: Brave New World",
+    image: "https://wallpapercave.com/wp/wp15110754.webp"
+},
+{
+    name: "Deadpool And Wolverine",
+    image: "https://wallpapercave.com/wp/wp13479980.jpg"
+},
+{
+    name: "John Wick Chapter 1",
+    image: "https://wallpapercave.com/wp/wp1867293.jpg"
+},
+{
+    name: "John Wick Chapter 2",
+    image: "https://wallpapercave.com/wp/wp5419277.jpg"
+},
+{
+    name: "John Wick: Chapter 3",
+    image: "https://w0.peakpx.com/wallpaper/99/136/HD-wallpaper-movie-john-wick-chapter-3-parabellum-john-wick-keanu-reeves.jpg"
+},
+{
+    name: "John Wick: Chapter 4",
+    image: "https://wallpapercave.com/wp/wp11345410.jpg"
+},
+{
+    name: "Thor: Ragnarok",
+    image: "https://wallpapercave.com/wp/wp2062977.jpg"
+},
+{
+    name: "Superman",
+    image: "https://wallpapercave.com/wp/wp15592974.jpg"
+},{
+    name: "Man of Steel",
+    image: "https://wallpapercave.com/wp/wp1747524.webp"
+},{
+    name: "The Batman",
+    image: "https://wallpapercave.com/wp/wp12670455.jpg"
+},{
+    name: "Venom",
+    image: "https://w0.peakpx.com/wallpaper/894/504/HD-wallpaper-movie-venom-tom-hardy.jpg"
+},
+{
+    name: "Her",
+    image: "https://miro.medium.com/v2/resize:fit:1200/1*WqNvOaIYdMxz_9S_u2Ofuw.jpeg"
+},
+
 ];
 
 // Game state
